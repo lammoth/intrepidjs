@@ -53,6 +53,16 @@ angular.module('IntrepidJS').config(
                             }
                     }
                 }).
+                state('admin.repository', {
+                    url: '/repository',
+                    views: {
+                        "admin_content":
+                            {
+                                templateUrl: "/admin/partials/repository",
+                                controller: 'AdminRepositoryController'
+                            }
+                    }
+                }).
                 state('admin.dist', {
                     url: "/dist",
                     views: {

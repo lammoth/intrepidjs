@@ -1,0 +1,24 @@
+div.row
+    div.col-md-12
+        h4.title= __('Search')
+        hr
+
+div.row.admin-repository
+    div.col-xs-12
+        input.form-control(type="text", placeholder="Search an element", ng-model="search", ng-keyup="$event.keyCode == 13 && searchPackage()", style="margin-bottom: 20px;")
+    div.col-xs-12
+        div.col-md-3.col-xs-6(ng-repeat="package in packages")
+            div.well
+                div.row
+                    div.col-xs-12
+                        h5.title {{package.name}}
+
+div.row
+    div.col-md-12
+        h4.title= __('Highlighted elements')
+        hr
+
+
+
+    
+            

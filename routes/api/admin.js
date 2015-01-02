@@ -142,6 +142,33 @@ routes[mainSettings.apiPrefix + mainSettings.siteRoutes.admin.route + '/modules/
     }
 };
 
+
+/**
+  * @desc  Get elements matched in the repository
+  * @return array - elements matched
+  * @return bool - Success response
+*/
+routes[mainSettings.apiPrefix + mainSettings.siteRoutes.admin.route + '/repository/search'] =  {
+    methods: ['get'],
+    middleware: [],
+    fn: function(req, res, next) {
+        var npm = require('npm');
+        npm.load({ loglevel: 'silent' }, function (err) {
+            if (err) res.json({success: false})
+            npm.commands.search([req.query.search], true, function(error, data) {
+                console.log(data);
+                if (error) res.json({success: false})
+                res.json(
+                    {
+                        packages: data,
+                        success: true
+                    }
+                );
+            }); 
+        });
+    }
+};
+
 /**
   * @desc  Get widgets available in the system
   * @param bool $available - Returns only widgets enabled
